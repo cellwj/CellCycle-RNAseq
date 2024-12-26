@@ -103,7 +103,7 @@ function stable_log₁F₁maclaurin(a::Number, b::Number, z::Number; maxiter=1e7
     while (HypergeometricFunctions.errcheck(S₀, S₁, 10eps(real(T))) || j ≤ 1) && (j <= maxiter)
         rⱼ = (a+j)/((b+j)*(j+1))
         S₀, S₁ = S₁, S₁+(S₁-S₀)*rⱼ*z
-        if HypergeometricFunctions.norm2(S₀) > 1e30
+        if HypergeometricFunctions.norm(S₀) > 1e30
             logs += log(S₀)
             S₁ /= S₀
             S₀ = one(T)

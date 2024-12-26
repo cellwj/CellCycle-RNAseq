@@ -4,7 +4,7 @@
 *注意按照下文作对应修改。如果你的Julia版本较低可能就不需要修改（未经验证）。*
 | 文件名                            | 跑通 | 备注                     |
 |----------------------------------|--------------|------------------------|
-| Figure2.ipynb        |      ❌        |  卡在`@time all_CI_Q_Δ = get_ratio_confidence_intervals`，仍在运行中    |
+| Figure2.ipynb        |      ✅       | `@time all_CI_Q_Δ = get_ratio_confidence_intervals` 耗时较长，约40min |
 | Figure3.ipynb        |     ✅       |   |
 | Figure4.ipynb      |      ❌        | 卡在`@time Threads.@threads for i in 1:nsamples`，仍在运行中       |
 | Figure5.ipynb         |      ✅        |    |
@@ -13,7 +13,7 @@
 
 - ✅ Windows10+Julia1.10.4
 
-1. download file form [Zenodo](https://doi.org/10.5281/zenodo.10467234) and put it in `.\data\mESC`.
+1. download file form [Zenodo](https://doi.org/10.5281/zenodo.10467234) and put it in `./data/mESC`.
 2. add packages.
     ```
     using Pkg
@@ -45,7 +45,7 @@
 # 已作修改
 
 1. 在 `Figure` 的构造中，`resolution` 参数已被废弃，应该使用 `size` 参数替代。
-    
+  
     例如将
     ```
     f = Figure(resolution = (size_pt[1]*0.55, size_pt[2]*0.95), figure_padding = 1)
@@ -55,7 +55,7 @@
     f = Figure(size = (size_pt[1]*0.55, size_pt[2]*0.95), figure_padding = 1)
     ```
 2. `lines!` 不支持 `markersize`属性，因此要其拆分为`lines!`和`scatter!`两部分。
-    
+  
     例如将
     ```
     lines!(ax, xs, ys, markersize=2, color=(c1, 0.8), linewidth=1.5, label="MLE fit")
@@ -90,13 +90,18 @@
                 jitter_width=0.2, markersize=1.3, side_nudge=0.12)
     ```
 
-## `Figure2.ipynb`
+## `./notebooks/Figure2.ipynb`
 
 1. 匿名函数的定义应改为
     ```
     Δf = ((x, y) -> @. abs(x - y) / y)
     Δb = ((x, y) -> @. abs(x - y) / y)
     ```
+
+## `./src/dists.jl`
+
+1. 由于版本更新，`HypergeometricFunctions.norm2`应该为``HypergeometricFunctions.norm``
+
 ---
 # CellCycle-RNAseq
 
