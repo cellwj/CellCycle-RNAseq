@@ -6,7 +6,7 @@
 |----------------------------------|--------------|------------------------|
 | Figure2.ipynb        |      ✅       | `@time all_CI_Q_Δ = get_ratio_confidence_intervals` 耗时较长，约40min |
 | Figure3.ipynb        |     ✅       |   |
-| Figure4.ipynb      |      ❌        | 卡在`@time Threads.@threads for i in 1:nsamples`，仍在运行中       |
+| Figure4.ipynb      |      ✅        | `@time Threads.@threads for i in 1:nsamples` 耗时较长，约3d       |
 | Figure5.ipynb         |      ✅        |    |
 
 # 部署
